@@ -19,7 +19,7 @@ public class Person {
 
     private String lastname;
 
-    @Column(name = "programing_language")
+    @Column(name = "programming_language")
     private String programingLanguage;
 
     public Person() {
@@ -62,6 +62,12 @@ public class Person {
 
     public void setProgramingLanguage(String programingLanguage) {
         this.programingLanguage = programingLanguage;
+    }
+
+    @Override
+    public String toString() {
+        return "Person [id=" + id + ", name=" + name + ", lastname=" + lastname + ", programingLanguage="
+                + programingLanguage + "]";
     }
 
 }
