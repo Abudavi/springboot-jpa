@@ -26,6 +26,14 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 		// List<Person> persons = (List<Person>) repository.findAll();
 		List<Person> persons = (List<Person>) repository.findByProgramingLanguageAndName("Java", "Andres");
 		persons.stream().forEach(person -> System.out.println(person));
+
+		List<Object[]> personsValue = repository.obtenerPersoData();
+
+		personsValue.stream().forEach(person -> System.out.println(person[0] + " Es experto en " + person[1]));
+
+		List<Object[]> lastname = repository.obtenerPersonaLastname("Guzman");
+		lastname.stream().forEach(person -> System.out.println(person[0]));
+
 	}
 
 }
