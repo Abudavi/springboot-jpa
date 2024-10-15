@@ -26,4 +26,16 @@ public interface PersonRepository extends CrudRepository<Person, Long> {
     List<Object[]> obtenerPersoName();
 
     Optional<Person> findById(Long id);
+
+    @Query("Select p from Person p where p.id=?1")
+    Optional<Person> findOne(Long id);
+
+    @Query("Select p from Person p where p.name=?1")
+    Optional<Person> findOneName(String name);
+
+    @Query("Select p from Person p where p.name like %?1%")
+    Optional<Person> findOneLikeName(String name);
+
+    Optional<Person> findByNameContaining(String name);
+
 }

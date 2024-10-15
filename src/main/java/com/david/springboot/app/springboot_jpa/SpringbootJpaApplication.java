@@ -38,7 +38,10 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 		 * }
 		 * System.err.println(person);
 		 */
-		repository.findById(1L).ifPresent(System.out::println);
+		repository.findOne(1L).ifPresent(System.out::println);
+		repository.findOneName("Pepe").ifPresent(System.out::println);
+		repository.findOneLikeName("Ma").ifPresent(System.out::println);
+		repository.findByNameContaining("fa").ifPresent(System.out::println);
 
 	}
 
