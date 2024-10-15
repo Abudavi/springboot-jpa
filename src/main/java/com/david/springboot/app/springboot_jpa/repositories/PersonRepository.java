@@ -5,6 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.david.springboot.app.springboot_jpa.entities.Person;
 import java.util.List;
+import java.util.Optional;
 
 public interface PersonRepository extends CrudRepository<Person, Long> {
 
@@ -23,4 +24,6 @@ public interface PersonRepository extends CrudRepository<Person, Long> {
 
     @Query("Select p.name from Person p")
     List<Object[]> obtenerPersoName();
+
+    Optional<Person> findById(Long id);
 }
