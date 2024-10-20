@@ -2,11 +2,13 @@ package com.david.springboot.app.springboot_jpa;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.david.springboot.app.springboot_jpa.entities.Person;
 import com.david.springboot.app.springboot_jpa.repositories.PersonRepository;
@@ -28,14 +30,26 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 
 	}
 
+	@Transactional
 	public void create() {
-		Person person = new Person(null, "Lalo", "Thor", "Phyton");
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Nombre");
+		String name = scanner.nextLine();
+		System.out.println("Apellido");
+		String lastname = scanner.nextLine();
+		System.out.println("Lenguaje de programacion");
+		String programingLanguage = scanner.nextLine();
+		scanner.close();
+		Person person = new Person(null, name, lastname, programingLanguage);
 
 		Person personnew = repository.save(person);
 		System.out.println(personnew);
 
+		repository.findById(personnew.getId()).ifPresent(System.out::println);
+
 	}
 
+	@Transactional(readOnly = true)
 	public void findOne() {
 
 		/*
@@ -53,6 +67,7 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 
 	}
 
+	@Transactional(readOnly = true)
 	public void list() {
 		// List<Person> persons = (List<Person>) repository.findAll();
 		List<Person> persons = (List<Person>) repository.findByProgramingLanguageAndName("Java", "Andres");
