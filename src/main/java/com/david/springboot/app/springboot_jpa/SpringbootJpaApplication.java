@@ -39,6 +39,9 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 		scanner.close();
 		String name = repository.getNameById(id);
 		System.out.println(name);
+		System.out.println("==============Full name ==============");
+		String fullName = repository.getFullNameById(id);
+		System.out.println("El fullname es : " + fullName);
 
 	}
 

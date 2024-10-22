@@ -10,7 +10,11 @@ import java.util.Optional;
 public interface PersonRepository extends CrudRepository<Person, Long> {
 
     @Query("Select p.name from Person p where p.id=?1")
-    String getNameById(Long id);
+    String getNameById(Long id);// se puede optener cualquier dato solo hay que especificar tipo de dato
+    // si es varchar string si es numerico int, long, etc
+
+    @Query("Select concat(p.name,' ',p.lastname) as fullname from Person p where p.id=?1")
+    String getFullNameById(Long id);
 
     List<Person> findByProgramingLanguage(String programingLanguage);
 
