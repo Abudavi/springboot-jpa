@@ -9,6 +9,9 @@ import java.util.Optional;
 
 public interface PersonRepository extends CrudRepository<Person, Long> {
 
+    @Query("Select p.name from Person p where p.id=?1")
+    String getNameById(Long id);
+
     List<Person> findByProgramingLanguage(String programingLanguage);
 
     @Query("select p from Person p where p.programingLanguage=?1 and p.name=?2")

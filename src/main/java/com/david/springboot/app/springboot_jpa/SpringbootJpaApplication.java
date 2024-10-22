@@ -26,7 +26,19 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("Consulta:");
-		delete2();
+		personalizeQueries();
+
+	}
+
+	@Transactional(readOnly = true)
+	public void personalizeQueries() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("==============Consulta nombre por id ==============");
+		System.out.println("Ingrese el id que desea para optener el nombre");
+		Long id = scanner.nextLong();
+		scanner.close();
+		String name = repository.getNameById(id);
+		System.out.println(name);
 
 	}
 
